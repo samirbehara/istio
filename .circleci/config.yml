@@ -50,12 +50,12 @@ recordNonzeroExitCodeIfTestFailed: &recordNonzeroExitCodeIfTestFailed
 markJobStartsOnGCS: &markJobStartsOnGCS
   run:
     when: always
-    command: bin/ci2gubernator.sh --job_starts
+    command: bin/ci2gubernator.sh --job_starts || true
 
 markJobFinishesOnGCS: &markJobFinishesOnGCS
   run:
     when: always
-    command: bin/ci2gubernator.sh --exit_code=$(cat exit_code) --junit_xml=/go/out/tests/junit.xml
+    command: bin/ci2gubernator.sh --exit_code=$(cat exit_code) --junit_xml=/go/out/tests/junit.xml || true
 
 dumpsysNonPilot: &dumpsysNonPilot
   run:
